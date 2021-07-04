@@ -1,5 +1,5 @@
 # Balena Cloud Direwolf Softmodem
-Container for running Direwolf softmodem on Balena.io Cloud
+Container for running [Direwolf](https://github.com/wb2osz/direwolf) soundcard softmodem on [BalenaCloud](https://www.balena.io/)
 
 ## Installation
 1. Create BalenaCloud account
