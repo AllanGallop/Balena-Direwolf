@@ -1,0 +1,39 @@
+FROM balenalib/raspberry-pi as base
+RUN mkdir -p /etc/direwolf
+RUN apt-get update && apt-get -y dist-upgrade \
+ && apt-get install -y \
+    libasound2-dev \
+    libusb-1.0-0-dev \
+    alsa-utils \
+ && rm -rf /var/lib/apt/lists/*
+
+FROM base as builder
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    git \
+    cmake \
+ && rm -rf /var/lib/apt/lists/*
+
+RUN git clone "https://github.com/wb2osz/direwolf.git" /tmp/direwolf \
+  && cd /tmp/direwolf \
+  && mkdir build \
+  && cd build \
+  && cmake .. \
+  && make -j4 \
+  && make install \
+  && make install-conf;
+
+ENV CALLSIGN "MYCALL"
+ENV PASSCODE "PASSCODE"
+ENV IGSERVER "euro.aprs2.net"
+ENV LATITUDE "52.049561"
+ENV LONGITUDE "-0.828590"
+ENV ALT "93"
+ENV COMMENT "Direwolf on Balena"
+ENV SYMBOL "igate"
+ENV OVERLAY "S"
+
+COPY start.sh direwolf.conf /etc/direwolf/
+WORKDIR /etc/direwolf
+
+CMD ["/bin/bash", "/etc/direwolf/start.sh"]
