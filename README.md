@@ -10,7 +10,7 @@ Container for running [Direwolf](https://github.com/wb2osz/direwolf) soundcard s
 6. Install [Balena-CLI](https://www.balena.io/docs/reference/balena-cli/) tools
 7. Clone this project
 
-    ``` git clone https://github.com/AllanGallop/Balena-Direwolf.git ```
+    ``` git clone https://github.com/AllanGallop/Balena-Direwolf-iGate.git ```
 8. Login to balena
 
     ``` balena login ```
